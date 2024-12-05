@@ -13,17 +13,23 @@ import HandTrackingModule as htm
 wCam, hCam= 460, 480
 prevTime= 0
 
+detector= htm.handDetector(detectionCon= 0.7)
+
 cap= cv2.VideoCapture(0)
 cap.set(3, wCam)
 cap.set(4, hCam)
 while True:
     ret, frame= cap.read() #return image frame (ret is return)
-    
+    frame= detector.findHands(frame)
+    # lmlist= detector.findPosition(frame, draw= False)
+    # if(len(lmlist) != 0):
+    #     print(lmlist[2])
+
     currTime= time.time()
     fps= 1/(currTime - prevTime)
     prevTime = currTime
 
-    cv2.putText(frame, f'FPS: {int(fps)}', (40,70), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0 , 0), 3)
+    cv2.putText(frame, f'FPS: {int(fps)}', (40,50), cv2.FONT_HERSHEY_COMPLEX, 1, (255,0 , 0), 3)
 
     cv2.imshow('frame', frame)
 
