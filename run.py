@@ -2,7 +2,7 @@ import time
 import numpy as np
 import cv2
 import HandTrackingModule as htm
-
+import math
 # img= cv2.imread('assets/pfp.jpg', 1) #-1 for colored pic, 0 for grey color, 1 for alpha
 # img= cv2.resize(img, (400,400))
 # cv2.imshow('Image', img)
@@ -21,9 +21,9 @@ cap.set(4, hCam)
 while True:
     ret, frame= cap.read() #return image frame (ret is return)
     frame= detector.findHands(frame)
-    # lmlist= detector.findPosition(frame, draw= False)
-    # if(len(lmlist) != 0):
-    #     print(lmlist[2])
+    lmList = detector.findPosition(frame, draw=False)
+    if len(lmList) != 0:
+        print(lmList[4], lmList[8])
 
     currTime= time.time()
     fps= 1/(currTime - prevTime)
