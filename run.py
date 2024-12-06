@@ -22,8 +22,8 @@ while True:
     ret, frame= cap.read() #return image frame (ret is return)
     frame= detector.findHands(frame)
     lmList = detector.findPosition(frame, draw=False)
-    if len(lmList) != 0:
-        print(lmList[4], lmList[8])
+    # if len(lmList) != 0:
+    #     print(lmList[4], lmList[8])
 
     currTime= time.time()
     fps= 1/(currTime - prevTime)
